@@ -59,7 +59,7 @@ with st.sidebar:
 
 if (selected == 'Home'):
     #email = "dreamrealm369@gmail.com"
-    st.write('<h1 style="text-align: center;">Welcome to Dream Realm</h1>', unsafe_allow_html=True)
+    st.write('<h1 style="text-align: center;">{color: blue;}Welcome to Dream Realm</h1>', unsafe_allow_html=True)
     #st.title("_Object Detection and Text Extraction_")
     st.subheader('''
     Dream Realm adalah team yang memiliki sebuah project Computer Vision dengan lingkup _Object Detection dan OCR_.''') 
