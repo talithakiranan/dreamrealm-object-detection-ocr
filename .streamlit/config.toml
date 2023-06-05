@@ -8,5 +8,4 @@ font="serif"
 [deprecation]
 showPyplotGlobalUse = false
 
-[server]
-fileWatcherType = "None"
+
