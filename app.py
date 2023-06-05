@@ -85,7 +85,7 @@ if selected == 'Project':
     num_classes = 5  # background + 4 class labels
     in_features = model.roi_heads.box_predictor.cls_score.in_features
     model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
-    model.load_state_dict(torch.load('trained_model.pth'))
+    model.load_state_dict(torch.load('trained_model.pkl'))
     model.eval()
 
     # Set device
