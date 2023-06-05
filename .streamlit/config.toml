@@ -9,4 +9,4 @@ font="serif"
 showPyplotGlobalUse = false
 
 [server]
-fileWatcherType = "None"
+fileWatcherType = "Poll"
