@@ -8,3 +8,5 @@ font="serif"
 [deprecation]
 showPyplotGlobalUse = false
 
+[server]
+fileWatcherType = "poll"
