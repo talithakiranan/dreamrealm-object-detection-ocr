@@ -1,5 +1,5 @@
 import os
-import easyocr
+#import easyocr
 import matplotlib.pyplot as plt
 import torch
 import torchvision
@@ -101,10 +101,11 @@ if (selected == 'Project'):
     with open(model_path, 'rb') as file:
         model = pickle.load(file)
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        model = model.to(device)
+        if device == "cuda";
+          model = model.to(device)
         model.eval()
 
-    #@st.cache(suppress_st_warning=True)
+    @st.cache(suppress_st_warning=True)
     def prediction(image):
     # Create the OCR reader
         reader = easyocr.Reader(['en'])  # Replace 'en' with the appropriate language code for your OCR needs
