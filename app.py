@@ -101,8 +101,7 @@ if (selected == 'Project'):
     with open(model_path, 'rb') as file:
         model = pickle.load(file)
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        if device == "cuda":
-          model = model.to(device)
+        model = model.to(device)
         model.eval()
 
     @st.cache(suppress_st_warning=True)
