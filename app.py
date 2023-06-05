@@ -1,5 +1,5 @@
 import os
-#import easyocr
+import easyocr
 import matplotlib.pyplot as plt
 import torch
 import torchvision
@@ -16,7 +16,7 @@ from PIL import Image
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu as option
-import base64
+#import base64
 
 pg_title = "Dream Realm Project"
 icon = "Dream_Realm.png"
@@ -104,7 +104,7 @@ if (selected == 'Project'):
         model = model.to(device)
         model.eval()
 
-    @st.cache(suppress_st_warning=True)
+    #st.cache(suppress_st_warning=True)
     def prediction(image):
     # Create the OCR reader
         reader = easyocr.Reader(['en'])  # Replace 'en' with the appropriate language code for your OCR needs
