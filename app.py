@@ -16,7 +16,7 @@ from PIL import Image
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu as option
-#import base64
+from pathlib import Path
 
 pg_title = "Dream Realm Project"
 icon = "Dream_Realm.png"
@@ -60,7 +60,7 @@ with st.sidebar:
 
 if (selected == 'Home'):
     #email = "dreamrealm369@gmail.com"
-    st.write('<h1 style="text-align: center; {color: blue;}">Welcome to Dream Realm</h1>', unsafe_allow_html=True)
+    st.write('<h1 style="text-align: center;">Welcome to Dream Realm</h1>', unsafe_allow_html=True)
     #st.title("_Object Detection and Text Extraction_")
     st.subheader('''
     Dream Realm adalah team yang memiliki sebuah project Computer Vision dengan lingkup _Object Detection dan OCR_.''') 
@@ -94,17 +94,24 @@ if (selected == 'Project'):
 #       return model
 
 #    model = load_model()
+device = torch.device('cpu')
+model_loc = "12EqvdV9Fg3M7Q5AtbzzMoFb_6IoMr1bN"
+@st.cache
+def load_model():
+    dest_path = Path('model')
+    dest_path.mkdir(exist_ok=True)
 
-    # Define the path to pickle file
-    model_path = 'trained_model.pkl' #running the code to load the model with cpu (without CUDA support)
-    # Load the model from .pkl file
-    with open(model_path, 'rb') as file:
-        model = pickle.load(file)
-        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        model = model.to(device)
-        model.eval()
+    f_checkpoint = Path("trained_model.pkl")
 
-    #st.cache(suppress_st_warning=True)
+    if not f_checkpoint.exists():
+        with st.spinner("Downloading model.. It may take times"):
+            from gdrive_model import download_model
+            download_model(model_loc, f_checkpoint)
+    model = torch.load(f_checkpoint, map_location=device)
+    model.eval()
+        
+
+    @st.cache(suppress_st_warning=True)
     def prediction(image):
     # Create the OCR reader
         reader = easyocr.Reader(['en'])  # Replace 'en' with the appropriate language code for your OCR needs
